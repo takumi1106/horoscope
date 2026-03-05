@@ -1,0 +1,213 @@
+/* --- 宇宙背景 --- */
+body {
+    background: radial-gradient(circle at center,
+            #0a0f2b 10%,
+            #050618 50%,
+            #01020f 100%);
+    overflow-x: hidden;
+    min-height: 100vh;
+    color: #fff;
+    position: relative;
+}
+
+img {
+    width: 220px;
+    height: 220px;
+}
+
+button {
+    padding: 0;
+
+    p {
+        font-size: 16px;
+        margin: 0 auto 15px;
+    }
+}
+
+.Btn {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    justify-content: center;
+    justify-items: center;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.Btn button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+h1 {
+    text-align: center;
+    padding-top: 46px;
+    font-weight: 700;
+    font-size: 40px;
+    background: linear-gradient(90deg, #FFD700, #FFB700, #FFF6A9);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow:
+        0 0 6px rgba(255, 215, 0, 0.7),
+        0 0 12px rgba(255, 215, 0, 0.5),
+        0 0 20px rgba(255, 215, 0, 0.4);
+    -webkit-text-fill-color: transparent;
+    will-change: transform;
+}
+
+h1::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    width: 180px;
+    height: 180px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, .3);
+    box-shadow:
+        0 0 20px rgba(255, 240, 180, 0.5),
+        0 0 40px rgba(255, 240, 180, 0.3);
+    pointer-events: none;
+}
+
+p {
+    text-align: center;
+    color: #F5F7FA;
+    font-size: 22px;
+
+    text-shadow:
+        0 0 6px rgba(245, 247, 250, 0.9),
+        0 0 12px rgba(245, 247, 250, 0.7),
+        0 0 24px rgba(245, 247, 250, 0.6),
+        0 0 40px rgba(255, 255, 255, 0.8);
+}
+
+#result {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .6s ease, transform .6s ease;
+}
+
+#result p {
+    font-size: 16px;
+    width: 700px;
+    margin: 0 auto 40px;
+}
+
+#result h2 {
+    text-align: center;
+    color: #F5F7FA;
+    font-size: 26px;
+    letter-spacing: 2.5px;
+
+    text-shadow:
+        0 0 6px rgba(255, 215, 0, 0.7),
+        0 0 12px rgba(255, 215, 0, 0.5),
+        0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+#result.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.inner {
+    margin: 0 auto 0;
+}
+
+/* 星全体コンテナ */
+#sky {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* 通常の星 */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 2s infinite ease-in-out;
+}
+
+/* 流れ星の本体 */
+.shooting-star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 8px white;
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* 流れ星の尾 */
+.shooting-tail {
+    position: absolute;
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, white, transparent);
+    top: 0;
+    left: -120px;
+    opacity: 0.9;
+    filter: blur(2px);
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+#sky {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* 流れ星本体 */
+.shooting-star {
+    position: absolute;
+    width: 6px;
+    /* ★太くしたいならここ上げる */
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 6px white) drop-shadow(0 0 12px white);
+    transform: rotate(15deg);
+}
+
+/* 流れ星の尾（←濃さの調整はここで可能） */
+.shooting-tail {
+    position: absolute;
+    width: 150px;
+    /* ★濃く＆長くするならここ */
+    height: 4.5px;
+    /* ★太さ（本体と合わせる） */
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    top: 0;
+    left: -120px;
+    opacity: 1;
+    /* ★濃さ */
+    filter: blur(2px);
+}
