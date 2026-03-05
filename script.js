@@ -28,20 +28,20 @@ const shuffleFortunes = function () {
     for (let i = indices.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [indices[i], indices[j]] = [indices[j], indices[i]];
-    }
+    }//for文の最後には；は要らない
     return indices.map(i => ({
         rank: rankList[i],
         message: messageList[i]
     }));
-}
+};
 
 const fortunes = shuffleFortunes();
 
-function showResult() {
+const showResult = function () {
     result.classList.remove('show');
     void result.offsetWidth;
     result.classList.add('show');
-}
+};
 
 for (let i = 0; i < btns.length; i++) {
     btns[i].addEventListener('click', () => {
@@ -52,7 +52,7 @@ for (let i = 0; i < btns.length; i++) {
     `;
         showResult();
     });
-}
+};
 
 /* --- 通常の星を生成 --- */
 const createStars = (count = 150) => {
